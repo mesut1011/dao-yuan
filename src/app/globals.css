@@ -10,34 +10,21 @@
   --dao-jade: #5a8f7b;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Georgia', 'STKaiti', 'KaiTi', serif;
+  font-family: Georgia, 'STKaiti', 'KaiTi', serif;
   background: var(--dao-paper);
   color: var(--dao-ink);
 }
 
-/* Ink wash background effect */
 .ink-wash-bg {
-  background: 
-    radial-gradient(ellipse at 20% 30%, rgba(26, 77, 46, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(90, 143, 123, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 70%),
-    linear-gradient(180deg, #f5f0e6 0%, #ebe5d8 100%);
+  background: linear-gradient(180deg, #f5f0e6 0%, #ebe5d8 100%);
 }
 
-/* Taoist card style */
 .tao-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f5f0e6 100%);
+  background: white;
   border: 1px solid rgba(26, 77, 46, 0.15);
-  box-shadow: 
-    0 4px 20px rgba(26, 77, 46, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(26, 77, 46, 0.08);
   position: relative;
-  overflow: hidden;
 }
 
 .tao-card::before {
@@ -50,7 +37,6 @@ body {
   background: linear-gradient(90deg, var(--dao-green), var(--dao-gold), var(--dao-green));
 }
 
-/* Yin-Yang animation */
 .yin-yang-spin {
   animation: rotate 20s linear infinite;
 }
@@ -60,41 +46,12 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Ink brush stroke decoration */
-.ink-stroke {
-  position: relative;
-}
-
-.ink-stroke::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--dao-ink) 20%, 
-    var(--dao-ink) 50%,
-    transparent 80%
-  );
-  opacity: 0.3;
-  border-radius: 2px;
-}
-
-/* Decorative cloud pattern */
-.cloud-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 20c-5 0-9 4-9 9 0 2 1 4 2 5-3 1-5 4-5 7 0 4 3 7 7 7h10c4 0 7-3 7-7 0-3-2-6-5-7 1-1 2-3 2-5 0-5-4-9-9-9z' fill='%231a4d2e' fill-opacity='0.03'/%3E%3C/svg%3E");
-}
-
-/* Taiji (Yin-Yang) Symbol */
 .taiji {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   background: linear-gradient(to right, #1a1a1a 50%, #f5f5f5 50%);
   position: relative;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
 .taiji::before,
@@ -121,34 +78,17 @@ body {
   background-color: #f5f5f5;
 }
 
-/* Button styles */
 .btn-tao {
   background: linear-gradient(135deg, var(--dao-green) 0%, #2d5a4a 100%);
   color: white;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  text-decoration: none;
+  display: inline-block;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-tao::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-tao:hover::before {
-  left: 100%;
 }
 
 .btn-tao:hover {
@@ -156,65 +96,19 @@ body {
   box-shadow: 0 8px 25px rgba(26, 77, 46, 0.3);
 }
 
-/* Gold accent button */
 .btn-gold {
   background: linear-gradient(135deg, var(--dao-gold) 0%, #d4a732 100%);
   color: #1a1a1a;
 }
 
-/* Section divider with Bagua */
-.section-divider {
-  text-align: center;
-  margin: 2rem 0;
-  position: relative;
-}
-
-.section-divider::before,
-.section-divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 30%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--dao-green), transparent);
-}
-
-.section-divider::before { left: 0; }
-.section-divider::after { right: 0; }
-
-/* Calligraphy style title */
 .title-brush {
-  font-family: 'STKaiti', 'KaiTi', 'Georgia', serif;
+  font-family: Georgia, 'STKaiti', 'KaiTi', serif;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Ink drip decoration */
-.ink-drip {
-  width: 8px;
-  height: 8px;
-  background: var(--dao-ink);
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
-/* Scroll style container */
 .scroll-container {
   background: linear-gradient(180deg, #f5f0e6 0%, #ebe5d8 50%, #f5f0e6 100%);
   border-left: 4px solid var(--dao-green);
   border-right: 4px solid var(--dao-green);
-  position: relative;
 }
-
-.scroll-container::before,
-.scroll-container::after {
-  content: '☰';
-  position: absolute;
-  font-size: 1.5rem;
-  color: var(--dao-gold);
-  opacity: 0.5;
-}
-
-.scroll-container::before { top: 10px; left: 10px; }
-.scroll-container::after { bottom: 10px; right: 10px; }
