@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dao-green: #1a4d2e;
+  --dao-gold: #c9a227;
+  --dao-cream: #faf8f5;
+  --dao-dark: #0d2818;
+  --dao-light: #e8f0e9;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: var(--dao-cream);
+  color: #333;
+}
+
+@layer components {
+  .btn-dao {
+    @apply px-6 py-3 bg-dao-gold text-dao-dark font-semibold rounded-lg 
+           hover:bg-yellow-500 transition-all duration-300 
+           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .card-dao {
+    @apply bg-white/90 backdrop-blur-sm rounded-xl p-6 
+           shadow-lg border border-dao-gold/20 
+           hover:shadow-xl transition-all duration-300;
+  }
+  
+  .input-dao {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-dao-green/20 
+           focus:border-dao-gold focus:outline-none 
+           bg-white/80 transition-all duration-300;
+  }
+}
