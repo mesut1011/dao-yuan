@@ -1,17 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
 export default function BaziPage() {
-  const router = useRouter()
-  const [form, setForm] = useState({ name: '', gender: 'Male', birthDate: '', birthHour: '' })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    router.push(`/bazi/result?name=${form.name}&gender=${form.gender}&birthDate=${form.birthDate}&birthHour=${form.birthHour || '12'}`)
-  }
-
   return (
     <div style={{ minHeight: '100vh', background: '#f5f0e6', padding: '2rem 1rem' }}>
       <div style={{ maxWidth: '30rem', margin: '0 auto' }}>
@@ -21,29 +8,29 @@ export default function BaziPage() {
           <p style={{ color: '#5a8f7b' }}>Bazi Destiny Analysis</p>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ background: 'white', borderRadius: '1rem', padding: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+        <form action="/bazi/result" method="get" style={{ background: 'white', borderRadius: '1rem', padding: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: '#1a4d2e' }}>Name</label>
-            <input type="text" required value={form.name} onChange={e => setForm({...form, name: e.target.value})} style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }} placeholder="Your name" />
+            <input type="text" name="name" required style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }} placeholder="Your name" />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: '#1a4d2e' }}>Gender</label>
-              <select value={form.gender} onChange={e => setForm({...form, gender: e.target.value})} style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }}>
+              <select name="gender" style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }}>
                 <option>Male</option>
                 <option>Female</option>
               </select>
             </div>
             <div>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: '#1a4d2e' }}>Birth Date</label>
-              <input type="date" required value={form.birthDate} onChange={e => setForm({...form, birthDate: e.target.value})} style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }} />
+              <input type="date" name="birthDate" required style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }} />
             </div>
           </div>
 
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', color: '#1a4d2e' }}>Birth Hour (optional)</label>
-            <select value={form.birthHour} onChange={e => setForm({...form, birthHour: e.target.value})} style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }}>
+            <select name="birthHour" style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }}>
               <option value="">Unknown</option>
               <option value="0">11 PM - 1 AM</option>
               <option value="1">1 AM - 3 AM</option>
