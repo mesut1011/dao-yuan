@@ -1,128 +1,45 @@
 export default function AboutPage() {
   return (
-    <div className="min-h-screen ink-wash-bg py-10 px-4">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="text-6xl mb-4 yin-yang-spin inline-block">☯</div>
-          <h1 className="text-4xl title-brush text-[#1a4d2e] mb-2">关于道缘</h1>
-          <p className="text-xl text-[#5a8f7b]">About Dao Yuan</p>
+    <div style={{ minHeight: '100vh', background: '#f5f0e6', padding: '2rem 1rem' }}>
+      <div style={{ maxWidth: '48rem', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ fontSize: '4rem' }}>☯</div>
+          <h1 style={{ fontSize: '2rem', color: '#1a4d2e', margin: 0 }}>About Dao Yuan</h1>
         </div>
 
-        {/* Mission */}
-        <div className="tao-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl">☯</span>
-            <h2 className="text-xl title-brush text-[#1a4d2e]">道法自然 Our Mission</h2>
-          </div>
-          <p className="text-gray-600 leading-relaxed mb-4">
-            道缘（Dao Yuan）致力于传承和弘扬道教文化，为海外华人及对东方文化感兴趣的人士提供便捷、专业的线上祈福和命理分析服务。
-          </p>
-          <p className="text-gray-600 leading-relaxed">
-            Dao Yuan is dedicated to preserving and sharing the profound wisdom of Taoist culture 
-            with the global community. We bridge ancient Taoist practices with modern technology, 
-            making authentic prayer rituals and destiny analysis accessible worldwide.
+        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Mission</h2>
+          <p style={{ color: '#666', lineHeight: 1.7 }}>
+            Dao Yuan is dedicated to preserving and sharing Taoist wisdom with the global community. 
+            We provide authentic prayer services and Bazi destiny analysis for overseas Chinese and Eastern culture enthusiasts.
           </p>
         </div>
 
-        {/* Services */}
-        <div className="tao-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl">☰</span>
-            <h2 className="text-xl title-brush text-[#1a4d2e]">服务项目 Our Services</h2>
+        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Services</h2>
+          <div style={{ marginBottom: '1rem' }}>
+            <strong>🕯️ Taoist Prayer Rituals</strong>
+            <p style={{ color: '#666', margin: '0.5rem 0' }}>Authentic ceremonies by ordained priests with photo/video confirmation.</p>
           </div>
-          <div className="space-y-6">
-            <div className="flex gap-4 items-start">
-              <div className="text-3xl">🕯️</div>
-              <div>
-                <h3 className="font-bold text-[#1a4d2e] text-lg">祈福法事 Prayer Rituals</h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  正观道长主持，真实法事，照片视频反馈。<br/>
-                  Authentic ceremonies performed by ordained Taoist priests with photo/video confirmation.
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start">
-              <div className="text-3xl">☯</div>
-              <div>
-                <h3 className="font-bold text-[#1a4d2e] text-lg">八字命理 Bazi Analysis</h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  AI 智能排盘，结合传统命理学解读。<br/>
-                  AI-powered interpretation based on traditional Chinese metaphysics.
-                </p>
-              </div>
-            </div>
+          <div>
+            <strong>☯️ Bazi Destiny Analysis</strong>
+            <p style={{ color: '#666', margin: '0.5rem 0' }}>AI-powered interpretation based on traditional Chinese metaphysics.</p>
           </div>
         </div>
 
-        {/* Authenticity */}
-        <div className="tao-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl">🏛️</span>
-            <h2 className="text-xl title-brush text-[#1a4d2e]">真实保障 Authenticity Guarantee</h2>
-          </div>
-          <ul className="space-y-3 text-gray-600">
-            <li className="flex items-start gap-2">
-              <span className="text-[#c9a227]">✓</span>
-              <span>正规道观，认证道长 / Certified Taoist priests at registered temples</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#c9a227]">✓</span>
-              <span>法事全程拍照录像 / Full photo and video documentation</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#c9a227]">✓</span>
-              <span>专人疏文撰写 / Personalized prayer scrolls</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#c9a227]">✓</span>
-              <span>透明定价，无隐藏费用 / Transparent pricing, no hidden fees</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Disclaimer */}
-        <div className="scroll-container rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl">⚠️</span>
-            <h2 className="text-xl title-brush text-amber-800">免责声明 Disclaimer</h2>
-          </div>
-          <p className="text-amber-700 text-sm leading-relaxed">
-            本站服务旨在弘扬道教文化，仅供信仰参考。命理分析基于传统易学理论，不构成医疗、法律或投资建议。
-            结果因人而异，受个人努力和环境影响。我们鼓励理性思考，命运掌握在自己手中。
-          </p>
-          <p className="text-amber-600 text-sm mt-3 italic">
-            Dao Yuan's services are intended for spiritual guidance and cultural education purposes only.
-            Results may vary. We encourage rational thinking and personal responsibility.
+        <div style={{ background: '#fef3c7', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', border: '2px solid #c9a227' }}>
+          <h2 style={{ color: '#92400e', marginTop: 0 }}>⚠️ Disclaimer</h2>
+          <p style={{ color: '#92400e', fontSize: '0.9rem', lineHeight: 1.6 }}>
+            Our services are for spiritual guidance purposes only. Results may vary. We encourage rational thinking and personal responsibility.
           </p>
         </div>
 
-        {/* Contact */}
-        <div className="tao-card rounded-2xl p-8 mb-8 text-center">
-          <div className="text-4xl mb-4">💬</div>
-          <h2 className="text-xl title-brush text-[#1a4d2e] mb-4">联系我们 Contact Us</h2>
-          <p className="text-gray-600 mb-4">
-            有任何疑问或需要咨询，欢迎通过 WhatsApp 联系我们
-          </p>
-          <a 
-            href="https://wa.me/8615607671586" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 btn-tao btn-gold"
-          >
-            <span className="text-xl">💬</span> Chat on WhatsApp
-          </a>
+        <div style={{ textAlign: 'center' }}>
+          <a href="https://wa.me/8615607671586" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#1a4d2e', color: 'white', padding: '1rem 2rem', borderRadius: '0.5rem', textDecoration: 'none' }}>💬 Contact via WhatsApp</a>
         </div>
 
-        {/* Quote */}
-        <div className="text-center mb-8">
-          <p className="text-2xl title-brush text-[#1a4d2e]">「道法自然，天人合一」</p>
-          <p className="text-gray-500 mt-2 italic">"The Tao follows its own natural way."</p>
-        </div>
-
-        {/* Back */}
-        <div className="text-center">
-          <a href="/" className="text-[#1a4d2e] hover:text-[#c9a227] transition">← 返回首页 Back to Home</a>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <a href="/" style={{ color: '#1a4d2e' }}>← Back to Home</a>
         </div>
       </div>
     </div>
