@@ -5,33 +5,216 @@
 :root {
   --dao-green: #1a4d2e;
   --dao-gold: #c9a227;
-  --dao-cream: #faf8f5;
-  --dao-dark: #0d2818;
-  --dao-light: #e8f0e9;
+  --dao-ink: #2c2c2c;
+  --dao-paper: #f5f0e6;
+  --dao-jade: #5a8f7b;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Georgia', serif;
-  background-color: var(--dao-cream);
-  color: #333;
+  font-family: 'Georgia', 'STKaiti', 'KaiTi', serif;
+  background: var(--dao-paper);
+  color: var(--dao-ink);
 }
 
-@layer components {
-  .btn-dao {
-    @apply px-6 py-3 bg-dao-gold text-dao-dark font-semibold rounded-lg 
-           hover:bg-yellow-500 transition-all duration-300 
-           shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-  }
-  
-  .card-dao {
-    @apply bg-white/90 backdrop-blur-sm rounded-xl p-6 
-           shadow-lg border border-dao-gold/20 
-           hover:shadow-xl transition-all duration-300;
-  }
-  
-  .input-dao {
-    @apply w-full px-4 py-3 rounded-lg border-2 border-dao-green/20 
-           focus:border-dao-gold focus:outline-none 
-           bg-white/80 transition-all duration-300;
-  }
+/* Ink wash background effect */
+.ink-wash-bg {
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(26, 77, 46, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(90, 143, 123, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 70%),
+    linear-gradient(180deg, #f5f0e6 0%, #ebe5d8 100%);
 }
+
+/* Taoist card style */
+.tao-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f5f0e6 100%);
+  border: 1px solid rgba(26, 77, 46, 0.15);
+  box-shadow: 
+    0 4px 20px rgba(26, 77, 46, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.tao-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dao-green), var(--dao-gold), var(--dao-green));
+}
+
+/* Yin-Yang animation */
+.yin-yang-spin {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Ink brush stroke decoration */
+.ink-stroke {
+  position: relative;
+}
+
+.ink-stroke::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--dao-ink) 20%, 
+    var(--dao-ink) 50%,
+    transparent 80%
+  );
+  opacity: 0.3;
+  border-radius: 2px;
+}
+
+/* Decorative cloud pattern */
+.cloud-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 20c-5 0-9 4-9 9 0 2 1 4 2 5-3 1-5 4-5 7 0 4 3 7 7 7h10c4 0 7-3 7-7 0-3-2-6-5-7 1-1 2-3 2-5 0-5-4-9-9-9z' fill='%231a4d2e' fill-opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Taiji (Yin-Yang) Symbol */
+.taiji {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #1a1a1a 50%, #f5f5f5 50%);
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.taiji::before,
+.taiji::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+
+.taiji::before {
+  top: 0;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 60%, #f5f5f5 0%, #f5f5f5 20%, transparent 20%);
+  background-color: #1a1a1a;
+}
+
+.taiji::after {
+  bottom: 0;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 40%, #1a1a1a 0%, #1a1a1a 20%, transparent 20%);
+  background-color: #f5f5f5;
+}
+
+/* Button styles */
+.btn-tao {
+  background: linear-gradient(135deg, var(--dao-green) 0%, #2d5a4a 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-tao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-tao:hover::before {
+  left: 100%;
+}
+
+.btn-tao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 77, 46, 0.3);
+}
+
+/* Gold accent button */
+.btn-gold {
+  background: linear-gradient(135deg, var(--dao-gold) 0%, #d4a732 100%);
+  color: #1a1a1a;
+}
+
+/* Section divider with Bagua */
+.section-divider {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dao-green), transparent);
+}
+
+.section-divider::before { left: 0; }
+.section-divider::after { right: 0; }
+
+/* Calligraphy style title */
+.title-brush {
+  font-family: 'STKaiti', 'KaiTi', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Ink drip decoration */
+.ink-drip {
+  width: 8px;
+  height: 8px;
+  background: var(--dao-ink);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+/* Scroll style container */
+.scroll-container {
+  background: linear-gradient(180deg, #f5f0e6 0%, #ebe5d8 50%, #f5f0e6 100%);
+  border-left: 4px solid var(--dao-green);
+  border-right: 4px solid var(--dao-green);
+  position: relative;
+}
+
+.scroll-container::before,
+.scroll-container::after {
+  content: '☰';
+  position: absolute;
+  font-size: 1.5rem;
+  color: var(--dao-gold);
+  opacity: 0.5;
+}
+
+.scroll-container::before { top: 10px; left: 10px; }
+.scroll-container::after { bottom: 10px; right: 10px; }

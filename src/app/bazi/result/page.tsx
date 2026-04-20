@@ -39,47 +39,64 @@ function ResultContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 flex items-center justify-center">
+      <div className="min-h-screen ink-wash-bg flex items-center justify-center">
         <div className="text-center">
-          <div className="text-6xl animate-spin mb-4">☯️</div>
-          <p className="text-green-800 font-medium">Analyzing your destiny...</p>
+          <div className="text-8xl mb-6 yin-yang-spin inline-block">☯</div>
+          <p className="text-2xl text-[#1a4d2e] title-brush">分析命盘中...</p>
+          <p className="text-gray-500 mt-2">Analyzing your destiny...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 py-8 px-4">
+    <div className="min-h-screen ink-wash-bg py-10 px-4">
       <div className="max-w-3xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-green-800 mb-2">Your Bazi Destiny Chart</h1>
-          <p className="text-gray-600">Based on Traditional Chinese Metaphysics</p>
+          <div className="text-5xl mb-3 yin-yang-spin inline-block">☯</div>
+          <h1 className="text-3xl title-brush text-[#1a4d2e]">命盘解析</h1>
+          <p className="text-[#5a8f7b]">Your Bazi Destiny Chart</p>
         </div>
 
-        {/* Bazi Chart */}
+        {/* Bazi Chart - Four Pillars */}
         {baziData && (
-          <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
-            <h2 className="text-xl font-bold text-green-800 mb-4 text-center">Four Pillars (八字四柱)</h2>
-            <div className="grid grid-cols-4 gap-4 text-center">
-              <div className="bg-green-700 text-white rounded-lg p-4">
-                <div className="text-sm opacity-80">Year</div>
-                <div className="text-2xl font-bold">{baziData.year?.gan || '甲'}</div>
-                <div className="text-lg">{baziData.year?.zhi || '子'}</div>
+          <div className="tao-card rounded-2xl p-6 mb-8">
+            <h2 className="text-xl title-brush text-center text-[#1a4d2e] mb-6">
+              八字四柱 Four Pillars
+            </h2>
+            <div className="grid grid-cols-4 gap-3 text-center">
+              {/* Year */}
+              <div className="relative">
+                <div className="bg-[#1a4d2e] text-white rounded-t-xl py-2 text-sm">年柱 Year</div>
+                <div className="bg-gradient-to-b from-[#1a4d2e]/10 to-white border-x-2 border-b-2 border-[#1a4d2e]/20 rounded-b-xl py-4">
+                  <div className="text-3xl font-bold text-[#1a4d2e]">{baziData.year?.gan || '甲'}</div>
+                  <div className="text-xl text-[#5a8f7b]">{baziData.year?.zhi || '子'}</div>
+                </div>
               </div>
-              <div className="bg-green-600 text-white rounded-lg p-4">
-                <div className="text-sm opacity-80">Month</div>
-                <div className="text-2xl font-bold">{baziData.month?.gan || '乙'}</div>
-                <div className="text-lg">{baziData.month?.zhi || '丑'}</div>
+              {/* Month */}
+              <div className="relative">
+                <div className="bg-[#2d5a4a] text-white rounded-t-xl py-2 text-sm">月柱 Month</div>
+                <div className="bg-gradient-to-b from-[#2d5a4a]/10 to-white border-x-2 border-b-2 border-[#2d5a4a]/20 rounded-b-xl py-4">
+                  <div className="text-3xl font-bold text-[#2d5a4a]">{baziData.month?.gan || '乙'}</div>
+                  <div className="text-xl text-[#5a8f7b]">{baziData.month?.zhi || '丑'}</div>
+                </div>
               </div>
-              <div className="bg-green-500 text-white rounded-lg p-4">
-                <div className="text-sm opacity-80">Day</div>
-                <div className="text-2xl font-bold">{baziData.day?.gan || '丙'}</div>
-                <div className="text-lg">{baziData.day?.zhi || '寅'}</div>
+              {/* Day */}
+              <div className="relative">
+                <div className="bg-[#5a8f7b] text-white rounded-t-xl py-2 text-sm">日柱 Day</div>
+                <div className="bg-gradient-to-b from-[#5a8f7b]/10 to-white border-x-2 border-b-2 border-[#5a8f7b]/20 rounded-b-xl py-4">
+                  <div className="text-3xl font-bold text-[#5a8f7b]">{baziData.day?.gan || '丙'}</div>
+                  <div className="text-xl text-[#5a8f7b]">{baziData.day?.zhi || '寅'}</div>
+                </div>
               </div>
-              <div className="bg-green-400 text-white rounded-lg p-4">
-                <div className="text-sm opacity-80">Hour</div>
-                <div className="text-2xl font-bold">{baziData.hour?.gan || '丁'}</div>
-                <div className="text-lg">{baziData.hour?.zhi || '卯'}</div>
+              {/* Hour */}
+              <div className="relative">
+                <div className="bg-[#c9a227] text-white rounded-t-xl py-2 text-sm">时柱 Hour</div>
+                <div className="bg-gradient-to-b from-[#c9a227]/10 to-white border-x-2 border-b-2 border-[#c9a227]/20 rounded-b-xl py-4">
+                  <div className="text-3xl font-bold text-[#c9a227]">{baziData.hour?.gan || '丁'}</div>
+                  <div className="text-xl text-[#5a8f7b]">{baziData.hour?.zhi || '卯'}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -87,8 +104,11 @@ function ResultContent() {
 
         {/* AI Analysis */}
         {analysis && (
-          <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
-            <h2 className="text-xl font-bold text-green-800 mb-4">AI Destiny Analysis</h2>
+          <div className="tao-card rounded-2xl p-6 mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">☯</span>
+              <h2 className="text-xl title-brush text-[#1a4d2e]">命理分析 Destiny Analysis</h2>
+            </div>
             <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap leading-relaxed">
               {analysis}
             </div>
@@ -96,24 +116,25 @@ function ResultContent() {
         )}
 
         {/* WhatsApp CTA */}
-        <div className="bg-gradient-to-r from-green-100 to-amber-100 rounded-2xl p-6 mb-8 text-center border-2 border-green-200">
-          <h3 className="text-xl font-bold text-green-800 mb-2">🔮 Need Deeper Insights?</h3>
-          <p className="text-gray-600 mb-4">
+        <div className="scroll-container rounded-2xl p-8 text-center">
+          <div className="text-4xl mb-4">🔮</div>
+          <h3 className="text-xl title-brush text-[#1a4d2e] mb-3">详批命理报告</h3>
+          <p className="text-gray-600 mb-6">
             Get a comprehensive personalized report covering career, wealth, relationships, and annual fortune predictions.
           </p>
           <a 
             href={whatsappLink} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition"
+            className="inline-flex items-center gap-2 btn-tao btn-gold"
           >
-            <span className="text-xl">💬</span> Chat on WhatsApp for Details
+            <span className="text-xl">💬</span> 咨询详批 Chat on WhatsApp
           </a>
           <p className="text-sm text-gray-500 mt-3">Response within 24 hours</p>
         </div>
 
-        <div className="text-center">
-          <a href="/" className="text-green-700 hover:text-amber-600">← Back to Home</a>
+        <div className="text-center mt-8">
+          <a href="/" className="text-[#1a4d2e] hover:text-[#c9a227] transition">← 返回首页 Back to Home</a>
         </div>
       </div>
     </div>

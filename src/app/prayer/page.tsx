@@ -4,14 +4,14 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const prayerTypes = [
-  { id: 'health', icon: '💚', title: 'Health & Wellness', desc: 'Pray for good health and recovery' },
-  { id: 'career', icon: '💼', title: 'Career Success', desc: 'Pray for career advancement' },
-  { id: 'wealth', icon: '💰', title: 'Wealth & Prosperity', desc: 'Pray for financial abundance' },
-  { id: 'love', icon: '💕', title: 'Love & Marriage', desc: 'Pray for harmonious relationships' },
-  { id: 'academic', icon: '📚', title: 'Academic Success', desc: 'Pray for wisdom and exam success' },
-  { id: 'peace', icon: '🕊️', title: 'Peace & Protection', desc: 'Pray for safety and peace' },
-  { id: 'ancestor', icon: '🕯️', title: 'Ancestor Memorial', desc: 'Honor departed loved ones' },
-  { id: 'custom', icon: '🙏', title: 'Custom Prayer', desc: 'Special requests and rituals' },
+  { id: 'health', icon: '💚', title: '健康祈福', titleEn: 'Health & Wellness', desc: '祈求身体健康、疾病痊愈' },
+  { id: 'career', icon: '💼', title: '事业祈福', titleEn: 'Career Success', desc: '祈求事业顺利、升职加薪' },
+  { id: 'wealth', icon: '💰', title: '财运祈福', titleEn: 'Wealth & Prosperity', desc: '祈求财源广进、富足安康' },
+  { id: 'love', icon: '💕', title: '姻缘祈福', titleEn: 'Love & Marriage', desc: '祈求姻缘美满、感情和睦' },
+  { id: 'academic', icon: '📚', title: '学业祈福', titleEn: 'Academic Success', desc: '祈求学业进步、金榜题名' },
+  { id: 'peace', icon: '🕊️', title: '平安祈福', titleEn: 'Peace & Protection', desc: '祈求出入平安、一切顺遂' },
+  { id: 'ancestor', icon: '🕯️', title: '祭祖超度', titleEn: 'Ancestor Memorial', desc: '为逝者祈福、超度亡灵' },
+  { id: 'custom', icon: '🙏', title: '定制法事', titleEn: 'Custom Prayer', desc: '特殊需求、个性化仪式' },
 ]
 
 export default function PrayerPage() {
@@ -26,46 +26,61 @@ export default function PrayerPage() {
   const selectedPrayer = prayerTypes.find(p => p.id === selected)
 
   const generateWhatsAppLink = () => {
-    const message = `Hello, I would like to request a prayer service.%0A%0AName: ${form.name}%0ABirth Date: ${form.birthDate}%0APrayer Type: ${selectedPrayer?.title}%0A%0ARequest Details:%0A${form.request}`
+    const message = `🙏 道缘祈福服务%0A%0A姓名: ${form.name}%0A出生日期: ${form.birthDate}%0A祈福类型: ${selectedPrayer?.title} (${selectedPrayer?.titleEn})%0A%0A祈福需求:%0A${form.request}`
     return `https://wa.me/${whatsappNumber}?text=${message}`
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50">
+    <div className="min-h-screen ink-wash-bg">
       {/* Header */}
-      <div className="bg-green-700 py-12 text-center">
-        <h1 className="text-4xl font-bold text-white mb-2">🕯️ Taoist Prayer Services</h1>
-        <p className="text-amber-300">Sincere prayers bring blessings</p>
+      <div className="bg-gradient-to-b from-[#1a4d2e] to-[#2d5a4a] py-14 text-center relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-5 left-10 text-6xl">道</div>
+          <div className="absolute top-10 right-20 text-5xl">法</div>
+          <div className="absolute bottom-10 left-20 text-4xl">自</div>
+          <div className="absolute bottom-5 right-10 text-5xl">然</div>
+        </div>
+        <div className="relative z-10">
+          <div className="text-5xl mb-3">🕯️</div>
+          <h1 className="text-4xl title-brush text-white mb-2">祈福法事</h1>
+          <p className="text-xl text-[#c9a227]">Taoist Prayer Services</p>
+          <p className="text-green-200 mt-2 italic">"心诚则灵，天道酬勤"</p>
+        </div>
       </div>
 
       {/* Pricing Banner */}
-      <div className="bg-amber-100 py-4 text-center">
-        <p className="text-amber-800 font-medium">
-          ✨ All Prayer Services: <span className="text-2xl font-bold text-green-800">$299</span>
+      <div className="bg-gradient-to-r from-[#c9a227]/20 via-[#c9a227] to-[#c9a227]/20 py-5 text-center border-y-2 border-[#c9a227]/30">
+        <p className="text-[#1a4d2e]">
+          ✨ 统一功德金 <span className="text-3xl font-bold text-[#c9a227] ml-2">$299</span>
         </p>
+        <p className="text-sm text-gray-600 mt-1">All Prayer Services - $299 USD</p>
       </div>
 
       {/* Intro */}
-      <div className="max-w-3xl mx-auto px-4 py-8 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-10 text-center">
         <p className="text-gray-600 leading-relaxed">
-          Taoist prayer rituals have been practiced for thousands of years. 
-          Our ordained Taoist priests perform authentic ceremonies to bring blessings, protection, and good fortune to your life.
+          道教祈福源远流长，是中华民族祈求平安、吉祥的重要传统。<br/>
+          Taoist prayer rituals have been practiced for thousands of years, 
+          bringing blessings and protection to sincere seekers.
         </p>
       </div>
 
       {/* Prayer Types */}
       <div className="max-w-5xl mx-auto px-4 pb-8">
-        <h2 className="text-xl font-bold text-green-800 mb-4 text-center">Select Your Prayer Type</h2>
+        <div className="section-divider text-xl text-[#c9a227] mb-8">☰</div>
+        <h2 className="text-2xl title-brush text-center text-[#1a4d2e] mb-8">选择祈福类型 Select Your Prayer</h2>
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {prayerTypes.map((type) => (
             <div
               key={type.id}
               onClick={() => setSelected(type.id)}
-              className={`bg-white rounded-xl shadow-md p-5 text-center cursor-pointer hover:shadow-xl transition-all ${selected === type.id ? 'ring-2 ring-green-500 shadow-xl' : ''}`}
+              className={`tao-card rounded-xl p-5 text-center cursor-pointer transition-all duration-300 ${selected === type.id ? 'ring-2 ring-[#c9a227] scale-[1.02]' : 'hover:scale-[1.02]'}`}
             >
               <div className="text-4xl mb-2">{type.icon}</div>
-              <h3 className="font-bold text-green-800 mb-1">{type.title}</h3>
-              <p className="text-gray-500 text-sm">{type.desc}</p>
+              <h3 className="font-bold text-[#1a4d2e] text-lg">{type.title}</h3>
+              <p className="text-sm text-[#5a8f7b]">{type.titleEn}</p>
+              <p className="text-xs text-gray-500 mt-2">{type.desc}</p>
             </div>
           ))}
         </div>
@@ -74,67 +89,75 @@ export default function PrayerPage() {
       {/* Request Form */}
       {selected && (
         <div className="max-w-xl mx-auto px-4 pb-12">
-          <div className="bg-white rounded-2xl shadow-xl p-6">
-            <h3 className="text-xl font-bold text-green-800 mb-4 text-center">
-              {selectedPrayer?.icon} {selectedPrayer?.title} - $299
-            </h3>
+          <div className="tao-card rounded-2xl p-8">
+            <div className="text-center mb-6">
+              <span className="text-3xl">{selectedPrayer?.icon}</span>
+              <h3 className="text-xl title-brush text-[#1a4d2e] mt-2">{selectedPrayer?.title}</h3>
+              <p className="text-[#c9a227] font-bold">$299</p>
+            </div>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                <label className="block text-sm font-medium text-[#1a4d2e] mb-1">
+                  姓名 Your Name *
+                </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={e => setForm({...form, name: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  placeholder="Enter your name"
+                  className="w-full px-4 py-3 border border-[#1a4d2e]/20 rounded-lg focus:ring-2 focus:ring-[#c9a227] outline-none bg-white/80"
+                  placeholder="用于撰写疏文"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
+                <label className="block text-sm font-medium text-[#1a4d2e] mb-1">
+                  出生日期 Birth Date *
+                </label>
                 <input
                   type="date"
                   value={form.birthDate}
                   onChange={e => setForm({...form, birthDate: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full px-4 py-3 border border-[#1a4d2e]/20 rounded-lg focus:ring-2 focus:ring-[#c9a227] outline-none bg-white/80"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Prayer Request *</label>
+                <label className="block text-sm font-medium text-[#1a4d2e] mb-1">
+                  祈福需求 Your Prayer Request *
+                </label>
                 <textarea
                   value={form.request}
                   onChange={e => setForm({...form, request: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full px-4 py-3 border border-[#1a4d2e]/20 rounded-lg focus:ring-2 focus:ring-[#c9a227] outline-none bg-white/80"
                   rows={4}
-                  placeholder="Please describe your prayer request, any specific wishes, and details you'd like the Taoist priest to know..."
+                  placeholder="请详细描述您的祈福需求、心愿事项..."
                 />
               </div>
 
-              <div className="bg-amber-50 rounded-lg p-4 text-sm text-amber-800">
-                <p>🙏 After contacting via WhatsApp, our staff will:</p>
-                <ul className="mt-2 space-y-1 list-disc list-inside">
-                  <li>Confirm your prayer details</li>
-                  <li>Arrange payment</li>
-                  <li>Schedule the ritual</li>
-                  <li>Send photos/videos after completion</li>
-                </ul>
+              <div className="bg-gradient-to-r from-[#1a4d2e]/5 to-[#c9a227]/5 rounded-lg p-4 text-sm">
+                <p className="text-[#1a4d2e] font-medium">🙏 服务流程：</p>
+                <ol className="mt-2 space-y-1 text-gray-600 list-decimal list-inside">
+                  <li>提交信息，联系客服</li>
+                  <li>确认祈福详情与付款</li>
+                  <li>道长择吉日举行法事</li>
+                  <li>接收法事照片/视频反馈</li>
+                </ol>
               </div>
 
               <a
                 href={generateWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full py-4 rounded-lg font-bold text-lg transition flex items-center justify-center gap-2 ${form.name && form.birthDate && form.request ? 'bg-green-600 text-white hover:bg-green-700 cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                className={`w-full py-4 rounded-lg font-bold text-lg transition flex items-center justify-center gap-2 ${form.name && form.birthDate && form.request ? 'btn-tao btn-gold cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                 onClick={e => {
                   if (!form.name || !form.birthDate || !form.request) {
                     e.preventDefault()
-                    alert('Please fill in all required fields')
+                    alert('请填写所有必填项 / Please fill in all required fields')
                   }
                 }}
               >
-                <span className="text-xl">💬</span> Contact via WhatsApp
+                <span className="text-xl">💬</span> 联系咨询 Contact via WhatsApp
               </a>
             </div>
           </div>
@@ -143,12 +166,14 @@ export default function PrayerPage() {
 
       {/* Notice */}
       <div className="max-w-3xl mx-auto px-4 pb-12">
-        <div className="bg-white rounded-xl p-6">
-          <h3 className="text-lg font-bold text-green-800 mb-3 text-center">🙏 What to Know</h3>
+        <div className="tao-card rounded-xl p-6">
+          <h3 className="text-lg title-brush text-[#1a4d2e] mb-4 text-center">🙏 祈福须知 Notice</h3>
           <ul className="text-gray-600 text-sm space-y-2">
+            <li>• 所有法事由正规道观道长主持，真实可靠</li>
             <li>• All rituals performed by ordained Taoist priests at authentic temples</li>
-            <li>• Receive photos and videos of your completed ceremony</li>
-            <li>• Prayer scrolls prepared with your name and birth details</li>
+            <li>• 完成后会拍照/视频反馈，确保真实</li>
+            <li>• Photo and video documentation provided for every service</li>
+            <li>• 心诚则灵，信而不迷</li>
             <li>• For spiritual guidance purposes - sincere faith brings blessings</li>
           </ul>
         </div>
@@ -156,7 +181,7 @@ export default function PrayerPage() {
 
       {/* Back */}
       <div className="text-center pb-12">
-        <Link href="/" className="text-green-700 hover:text-amber-600 transition">← Return Home</Link>
+        <Link href="/" className="text-[#1a4d2e] hover:text-[#c9a227] transition">← 返回首页 Return Home</Link>
       </div>
     </div>
   )
