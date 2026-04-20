@@ -9,6 +9,9 @@ function ResultContent() {
   const [loading, setLoading] = useState(true)
   const [baziData, setBaziData] = useState<any>(null)
 
+  const whatsappNumber = '8615607671586'
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi, I just received my Bazi analysis and would like to get a detailed report.`
+
   useEffect(() => {
     const fetchData = async () => {
       const name = searchParams.get('name') || ''
@@ -92,15 +95,21 @@ function ResultContent() {
           </div>
         )}
 
-        {/* Premium CTA */}
-        <div className="bg-gradient-to-r from-amber-100 to-green-100 rounded-2xl p-6 mb-8 text-center">
-          <h3 className="text-xl font-bold text-green-800 mb-2">🔮 Want Deeper Insights?</h3>
+        {/* WhatsApp CTA */}
+        <div className="bg-gradient-to-r from-green-100 to-amber-100 rounded-2xl p-6 mb-8 text-center border-2 border-green-200">
+          <h3 className="text-xl font-bold text-green-800 mb-2">🔮 Need Deeper Insights?</h3>
           <p className="text-gray-600 mb-4">
-            Get a comprehensive report covering career, wealth, relationships, and annual fortune predictions.
+            Get a comprehensive personalized report covering career, wealth, relationships, and annual fortune predictions.
           </p>
-          <button className="px-8 py-3 bg-green-700 text-white rounded-lg font-bold hover:bg-green-800 transition">
-            Get Premium Report - $19.99
-          </button>
+          <a 
+            href={whatsappLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition"
+          >
+            <span className="text-xl">💬</span> Chat on WhatsApp for Details
+          </a>
+          <p className="text-sm text-gray-500 mt-3">Response within 24 hours</p>
         </div>
 
         <div className="text-center">

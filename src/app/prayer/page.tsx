@@ -4,190 +4,30 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const prayerTypes = [
-  { id: 'health', icon: '💚', title: 'Health & Wellness', desc: 'Pray for good health and recovery', price: '$29' },
-  { id: 'career', icon: '💼', title: 'Career Success', desc: 'Pray for career advancement and opportunities', price: '$49' },
-  { id: 'wealth', icon: '💰', title: 'Wealth & Prosperity', desc: 'Pray for financial abundance and fortune', price: '$59' },
-  { id: 'love', icon: '💕', title: 'Love & Marriage', desc: 'Pray for harmonious relationships and true love', price: '$49' },
-  { id: 'academic', icon: '📚', title: 'Academic Success', desc: 'Pray for wisdom and exam success', price: '$29' },
-  { id: 'peace', icon: '🕊️', title: 'Peace & Protection', desc: 'Pray for safety and peace of mind', price: '$29' },
-  { id: 'ancestor', icon: '🕯️', title: 'Ancestor Memorial', desc: 'Honor and pray for departed loved ones', price: '$89' },
-  { id: 'taisui', icon: '⛩️', title: 'Tai Sui Blessing', desc: 'Annual protection ritual for good fortune', price: '$59' },
+  { id: 'health', icon: '💚', title: 'Health & Wellness', desc: 'Pray for good health and recovery' },
+  { id: 'career', icon: '💼', title: 'Career Success', desc: 'Pray for career advancement' },
+  { id: 'wealth', icon: '💰', title: 'Wealth & Prosperity', desc: 'Pray for financial abundance' },
+  { id: 'love', icon: '💕', title: 'Love & Marriage', desc: 'Pray for harmonious relationships' },
+  { id: 'academic', icon: '📚', title: 'Academic Success', desc: 'Pray for wisdom and exam success' },
+  { id: 'peace', icon: '🕊️', title: 'Peace & Protection', desc: 'Pray for safety and peace' },
+  { id: 'ancestor', icon: '🕯️', title: 'Ancestor Memorial', desc: 'Honor departed loved ones' },
+  { id: 'custom', icon: '🙏', title: 'Custom Prayer', desc: 'Special requests and rituals' },
 ]
 
 export default function PrayerPage() {
   const [selected, setSelected] = useState<string | null>(null)
-  const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({
     name: '',
-    gender: 'Male',
     birthDate: '',
-    birthTime: '',
-    address: '',
-    wish: '',
-    contact: '',
+    request: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
+  const whatsappNumber = '8615607671586'
   const selectedPrayer = prayerTypes.find(p => p.id === selected)
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md text-center">
-          <div className="text-6xl mb-4">🙏</div>
-          <h2 className="text-2xl font-bold text-green-800 mb-4">Prayer Request Submitted</h2>
-          <p className="text-gray-600 mb-6">
-            Thank you for your sincere prayer request! Our Taoist priest will perform the ritual at an auspicious time. 
-            You will be notified via WhatsApp upon completion.
-          </p>
-          <div className="bg-amber-50 rounded-lg p-4 mb-6 text-left">
-            <p className="text-sm text-gray-600 mb-2">Name: <strong>{form.name}</strong></p>
-            <p className="text-sm text-gray-600 mb-2">Prayer Type: <strong>{selectedPrayer?.title}</strong></p>
-            <p className="text-sm text-gray-600">Contact: <strong>{form.contact}</strong></p>
-          </div>
-          <p className="text-sm text-amber-700 mb-6">
-            💡 For urgent requests or special requirements, please contact us via WhatsApp
-          </p>
-          <Link href="/" className="inline-block px-6 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800">
-            Return Home
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  if (selected) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 py-8 px-4">
-        <div className="max-w-lg mx-auto">
-          <button onClick={() => setSelected(null)} className="text-green-700 mb-4 hover:underline">
-            ← Back to Selection
-          </button>
-          
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="bg-green-700 text-white p-6 text-center">
-              <div className="text-4xl mb-2">{selectedPrayer?.icon}</div>
-              <h1 className="text-2xl font-bold">{selectedPrayer?.title}</h1>
-              <p className="text-green-200 mt-1">{selectedPrayer?.desc}</p>
-              <p className="text-amber-300 mt-2 text-lg">Offering: {selectedPrayer?.price}</p>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name (for the prayer scroll) *</label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={e => setForm({...form, name: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  placeholder="Enter your full name"
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Gender *</label>
-                  <select
-                    value={form.gender}
-                    onChange={e => setForm({...form, gender: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  >
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
-                  <input
-                    type="date"
-                    required
-                    value={form.birthDate}
-                    onChange={e => setForm({...form, birthDate: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Birth Hour (optional)</label>
-                <select
-                  value={form.birthTime}
-                  onChange={e => setForm({...form, birthTime: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                >
-                  <option value="">Unknown</option>
-                  <option>11 PM - 1 AM (Rat Hour)</option>
-                  <option>1 AM - 3 AM (Ox Hour)</option>
-                  <option>3 AM - 5 AM (Tiger Hour)</option>
-                  <option>5 AM - 7 AM (Rabbit Hour)</option>
-                  <option>7 AM - 9 AM (Dragon Hour)</option>
-                  <option>9 AM - 11 AM (Snake Hour)</option>
-                  <option>11 AM - 1 PM (Horse Hour)</option>
-                  <option>1 PM - 3 PM (Goat Hour)</option>
-                  <option>3 PM - 5 PM (Monkey Hour)</option>
-                  <option>5 PM - 7 PM (Rooster Hour)</option>
-                  <option>7 PM - 9 PM (Dog Hour)</option>
-                  <option>9 PM - 11 PM (Pig Hour)</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Current Address (for prayer direction) *</label>
-                <input
-                  type="text"
-                  required
-                  value={form.address}
-                  onChange={e => setForm({...form, address: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  placeholder="City, State/Province, Country"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Prayer Wish (optional)</label>
-                <textarea
-                  value={form.wish}
-                  onChange={e => setForm({...form, wish: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  rows={3}
-                  placeholder="Write your specific prayer wish here..."
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number *</label>
-                <input
-                  type="text"
-                  required
-                  value={form.contact}
-                  onChange={e => setForm({...form, contact: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                  placeholder="+1 234 567 8900"
-                />
-                <p className="text-xs text-gray-500 mt-1">For receiving ritual confirmation and photos</p>
-              </div>
-              
-              <div className="bg-amber-50 rounded-lg p-4 text-sm text-amber-800">
-                <p>⚠️ After submission, our staff will contact you to confirm payment and schedule the ritual</p>
-                <p className="mt-1">🙏 You will receive photos/videos of the completed ceremony</p>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full py-4 bg-green-700 text-white rounded-lg font-bold text-lg hover:bg-green-800 transition"
-              >
-                Submit Prayer Request
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    )
+  const generateWhatsAppLink = () => {
+    const message = `Hello, I would like to request a prayer service.%0A%0AName: ${form.name}%0ABirth Date: ${form.birthDate}%0APrayer Type: ${selectedPrayer?.title}%0A%0ARequest Details:%0A${form.request}`
+    return `https://wa.me/${whatsappNumber}?text=${message}`
   }
 
   return (
@@ -196,6 +36,13 @@ export default function PrayerPage() {
       <div className="bg-green-700 py-12 text-center">
         <h1 className="text-4xl font-bold text-white mb-2">🕯️ Taoist Prayer Services</h1>
         <p className="text-amber-300">Sincere prayers bring blessings</p>
+      </div>
+
+      {/* Pricing Banner */}
+      <div className="bg-amber-100 py-4 text-center">
+        <p className="text-amber-800 font-medium">
+          ✨ All Prayer Services: <span className="text-2xl font-bold text-green-800">$299</span>
+        </p>
       </div>
 
       {/* Intro */}
@@ -207,24 +54,92 @@ export default function PrayerPage() {
       </div>
 
       {/* Prayer Types */}
-      <div className="max-w-5xl mx-auto px-4 pb-12">
+      <div className="max-w-5xl mx-auto px-4 pb-8">
+        <h2 className="text-xl font-bold text-green-800 mb-4 text-center">Select Your Prayer Type</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {prayerTypes.map((type) => (
             <div
               key={type.id}
               onClick={() => setSelected(type.id)}
-              className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer hover:shadow-xl hover:scale-105 transition-all"
+              className={`bg-white rounded-xl shadow-md p-5 text-center cursor-pointer hover:shadow-xl transition-all ${selected === type.id ? 'ring-2 ring-green-500 shadow-xl' : ''}`}
             >
-              <div className="text-4xl mb-3">{type.icon}</div>
-              <h3 className="text-lg font-bold text-green-800 mb-1">{type.title}</h3>
-              <p className="text-gray-500 text-sm mb-3">{type.desc}</p>
-              <span className="inline-block px-4 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-bold">
-                {type.price}
-              </span>
+              <div className="text-4xl mb-2">{type.icon}</div>
+              <h3 className="font-bold text-green-800 mb-1">{type.title}</h3>
+              <p className="text-gray-500 text-sm">{type.desc}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Request Form */}
+      {selected && (
+        <div className="max-w-xl mx-auto px-4 pb-12">
+          <div className="bg-white rounded-2xl shadow-xl p-6">
+            <h3 className="text-xl font-bold text-green-800 mb-4 text-center">
+              {selectedPrayer?.icon} {selectedPrayer?.title} - $299
+            </h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={e => setForm({...form, name: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  placeholder="Enter your name"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
+                <input
+                  type="date"
+                  value={form.birthDate}
+                  onChange={e => setForm({...form, birthDate: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Your Prayer Request *</label>
+                <textarea
+                  value={form.request}
+                  onChange={e => setForm({...form, request: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  rows={4}
+                  placeholder="Please describe your prayer request, any specific wishes, and details you'd like the Taoist priest to know..."
+                />
+              </div>
+
+              <div className="bg-amber-50 rounded-lg p-4 text-sm text-amber-800">
+                <p>🙏 After contacting via WhatsApp, our staff will:</p>
+                <ul className="mt-2 space-y-1 list-disc list-inside">
+                  <li>Confirm your prayer details</li>
+                  <li>Arrange payment</li>
+                  <li>Schedule the ritual</li>
+                  <li>Send photos/videos after completion</li>
+                </ul>
+              </div>
+
+              <a
+                href={generateWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-full py-4 rounded-lg font-bold text-lg transition flex items-center justify-center gap-2 ${form.name && form.birthDate && form.request ? 'bg-green-600 text-white hover:bg-green-700 cursor-pointer' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                onClick={e => {
+                  if (!form.name || !form.birthDate || !form.request) {
+                    e.preventDefault()
+                    alert('Please fill in all required fields')
+                  }
+                }}
+              >
+                <span className="text-xl">💬</span> Contact via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Notice */}
       <div className="max-w-3xl mx-auto px-4 pb-12">
@@ -232,7 +147,7 @@ export default function PrayerPage() {
           <h3 className="text-lg font-bold text-green-800 mb-3 text-center">🙏 What to Know</h3>
           <ul className="text-gray-600 text-sm space-y-2">
             <li>• All rituals performed by ordained Taoist priests at authentic temples</li>
-            <li>• Receive photos/videos of your completed ceremony</li>
+            <li>• Receive photos and videos of your completed ceremony</li>
             <li>• Prayer scrolls prepared with your name and birth details</li>
             <li>• For spiritual guidance purposes - sincere faith brings blessings</li>
           </ul>
