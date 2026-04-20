@@ -1,111 +1,127 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-interface BaZiData {
-  name: string
-  gender: string
-  birthDate: string
-  birthTime: string
-  birthPlace: string
-  ganZhi: {
-    year: string
-    month: string
-    day: string
-    hour: string
+const QWEN_API_KEY = process.env.QWEN_API_KEY || 'sk-1ec5b9b5c27c4ff29b47a70defdc6c73'
+const QWEN_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions'
+
+// Heavenly Stems and Earthly Branches
+const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+
+// Simple Bazi calculation
+function calculateBazi(year: number, month: number, day: number, hour: number) {
+  // Simplified calculation - in production, use a proper algorithm
+  const yearGan = tianGan[(year - 4) % 10]
+  const yearZhi = diZhi[(year - 4) % 12]
+  
+  const monthGan = tianGan[(year * 12 + month + 3) % 10]
+  const monthZhi = diZhi[(month + 1) % 12]
+  
+  const dayGan = tianGan[(year * 365 + month * 30 + day) % 10]
+  const dayZhi = diZhi[(year * 365 + month * 30 + day) % 12]
+  
+  const hourGan = tianGan[(tianGan.indexOf(dayGan) * 2 + Math.floor(hour / 2)) % 10]
+  const hourZhi = diZhi[Math.floor((hour + 1) / 2) % 12]
+
+  return {
+    year: { gan: yearGan, zhi: yearZhi },
+    month: { gan: monthGan, zhi: monthZhi },
+    day: { gan: dayGan, zhi: dayZhi },
+    hour: { gan: hourGan, zhi: hourZhi },
   }
-  wuXing: Record<string, number>
-  shiShen: {
-    year: string
-    month: string
-    day: string
-    hour: string
-  }
-  naYin: string
 }
 
-export async function POST(request: NextRequest) {
-  try {
-    const data: BaZiData = await request.json()
-    
-    const apiKey = process.env.QWEN_API_KEY
-    
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: 'API密钥未配置' },
-        { status: 500 }
-      )
-    }
+function buildPrompt(bazi: any, name: string, gender: string): string {
+  return `You are a master of Chinese Bazi (Four Pillars) astrology with 20 years of experience. 
+Analyze the following person's destiny chart and provide insights in English.
 
-    // 构建提示词
-    const prompt = `你是一位精通中国传统命理的资深命理师。请根据以下八字信息，为用户进行详细的命理分析。
+Person's Information:
+- Name: ${name}
+- Gender: ${gender}
+- Four Pillars:
+  * Year: ${bazi.year.gan}${bazi.year.zhi}
+  * Month: ${bazi.month.gan}${bazi.month.zhi}
+  * Day: ${bazi.day.gan}${bazi.day.zhi}
+  * Hour: ${bazi.hour.gan}${bazi.hour.zhi}
 
-八字信息：
-- 四柱：${data.ganZhi.year}年 | ${data.ganZhi.month}月 | ${data.ganZhi.day}日 | ${data.ganZhi.hour}时
-- 五行分布：木${data.wuXing.木 || 0} 火${data.wuXing.火 || 0} 土${data.wuXing.土 || 0} 金${data.wuXing.金 || 0} 水${data.wuXing.水 || 0}
-- 纳音五行：${data.naYin}
-- 十神：年柱${data.shiShen.year} | 月柱${data.shiShen.month} | 日主${data.shiShen.day} | 时柱${data.shiShen.hour}
+Please provide a concise analysis (about 300-400 words) covering:
 
-请从以下几个角度进行分析：
-1. 命局特点分析（根据五行生克、十神组合）
-2. 性格分析
-3. 事业财运
-4. 感情姻缘
-5. 健康提示
-6. 大运趋势
+## 🌟 Core Personality
+Brief description of their main character traits based on the Day Master.
 
-请用专业的命理知识，结合现代生活的理解，给出既有传统智慧又接地气的分析。语言要优雅有文采，符合道教文化的气质。回答用中文。`
+## 💪 Strengths & Talents
+2-3 key strengths and natural abilities.
 
-    // 调用千问API
-    const response = await fetch(
-      'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: 'qwen-turbo',
-          messages: [
-            {
-              role: 'system',
-              content: '你是一位精通中国传统命理的资深命理师，说话文雅有内涵，融合传统文化与现代智慧。'
-            },
-            {
-              role: 'user',
-              content: prompt
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 2000
-        })
-      }
-    )
+## ⚠️ Challenges
+1-2 areas that may need attention or improvement.
 
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error('Qwen API Error:', response.status, errorText)
-      return NextResponse.json(
-        { error: 'AI分析服务暂时不可用，请稍后重试' },
-        { status: 500 }
-      )
-    }
+## 💼 Career Direction
+Types of careers or industries that suit them well.
 
-    const result = await response.json()
-    const analysis = result.choices?.[0]?.message?.content || '分析生成失败'
+## 💕 Relationship Insights
+General patterns in relationships and compatibility notes.
 
-    return NextResponse.json({
-      success: true,
-      analysis,
-      data: {
-        ...data,
-        generatedAt: new Date().toISOString()
-      }
+## 🍀 Lucky Elements
+Favorable colors, directions, or elements that can enhance their fortune.
+
+Keep the analysis positive, practical, and accessible to English readers unfamiliar with Chinese metaphysics.
+End with an encouraging note.`
+}
+
+async function getAIAnalysis(bazi: any, name: string, gender: string): Promise<string> {
+  const prompt = buildPrompt(bazi, name, gender)
+  
+  const response = await fetch(QWEN_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${QWEN_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: 'qwen-plus',
+      messages: [
+        { role: 'system', content: 'You are an expert Bazi astrologer providing readings in English.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 1000
     })
+  })
+
+  if (!response.ok) {
+    throw new Error(`AI API error: ${response.status}`)
+  }
+
+  const result = await response.json()
+  return result.choices[0].message.content
+}
+
+export async function POST(request: Request) {
+  try {
+    const data = await request.json()
+    const { name, gender, birthDate, birthHour, birthPlace } = data
+    
+    if (!birthDate) {
+      return NextResponse.json({ error: 'Birth date is required' }, { status: 400 })
+    }
+
+    // Parse birth date
+    const [year, month, day] = birthDate.split('-').map(Number)
+    const hour = parseInt(birthHour) || 12
+
+    // Calculate Bazi
+    const bazi = calculateBazi(year, month, day, hour)
+    
+    // Get AI analysis
+    const analysis = await getAIAnalysis(bazi, name || 'User', gender || 'Male')
+
+    return NextResponse.json({ 
+      success: true, 
+      bazi,
+      analysis 
+    })
+    
   } catch (error) {
-    console.error('API Error:', error)
-    return NextResponse.json(
-      { error: '服务器内部错误' },
-      { status: 500 }
-    )
+    console.error('Bazi analysis error:', error)
+    return NextResponse.json({ error: 'Failed to analyze' }, { status: 500 })
   }
 }
