@@ -1,47 +1,55 @@
+import { siteConfig } from '@/config/site'
+
 export default function AboutPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f0e6', padding: '2rem 1rem' }}>
-      <div style={{ maxWidth: '48rem', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ fontSize: '4rem' }}>☯</div>
-          <h1 style={{ fontSize: '2rem', color: '#1a4d2e', margin: 0 }}>About Dao Yuan</h1>
-        </div>
-
-        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Mission</h2>
-          <p style={{ color: '#666', lineHeight: 1.7 }}>
-            Dao Yuan is dedicated to preserving and sharing Taoist wisdom with the global community. 
-            We provide authentic prayer services and Bazi destiny analysis for overseas Chinese and Eastern culture enthusiasts.
+    <main className="section">
+      <div className="container narrow">
+        <div className="section-heading">
+          <p className="eyebrow">关于这个模板</p>
+          <h1>{siteConfig.name}</h1>
+          <p>
+            这个项目已经整理为一个中性的 AI 导演应用基础。界面中与旧产品、
+            第三方联系方式和特定服务相关的内容都已移除，方便你接入自己的业务。
           </p>
         </div>
 
-        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Services</h2>
-          <div style={{ marginBottom: '1rem' }}>
-            <strong>🕯️ Taoist Prayer Rituals</strong>
-            <p style={{ color: '#666', margin: '0.5rem 0' }}>Authentic ceremonies by ordained priests with photo/video confirmation.</p>
-          </div>
-          <div>
-            <strong>☯️ Bazi Destiny Analysis</strong>
-            <p style={{ color: '#666', margin: '0.5rem 0' }}>AI-powered interpretation based on traditional Chinese metaphysics.</p>
-          </div>
-        </div>
+        <div className="content-stack">
+          <section className="panel">
+            <h2>已完成的改造</h2>
+            <ul className="check-list">
+              <li>移除了旧品牌、旧服务和固定联系方式文案。</li>
+              <li>使用服务端 API 路由替代硬编码的外部联系方式。</li>
+              <li>新增无需外部供应商即可运行的导演工作流示例。</li>
+              <li>新增客户注册后端接口，后续可替换为你自己的客户系统。</li>
+            </ul>
+          </section>
 
-        <div style={{ background: '#fef3c7', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', border: '2px solid #c9a227' }}>
-          <h2 style={{ color: '#92400e', marginTop: 0 }}>⚠️ Disclaimer</h2>
-          <p style={{ color: '#92400e', fontSize: '0.9rem', lineHeight: 1.6 }}>
-            Our services are for spiritual guidance purposes only. Results may vary. We encourage rational thinking and personal responsibility.
-          </p>
-        </div>
+          <section className="panel">
+            <h2>API 接入点</h2>
+            <p>
+              前端会把创意简报提交到 <code>{siteConfig.api.directorEndpoint}</code>。
+              通过设置 <code>{siteConfig.api.externalApiUrlEnv}</code>，并按需设置{' '}
+              <code>{siteConfig.api.externalApiKeyEnv}</code>，该路由即可调用你的生成服务。
+            </p>
+            <p>
+              客户注册接口位于 <code>{siteConfig.api.customerRegistrationEndpoint}</code>。
+              你可以通过 <code>{siteConfig.api.customerRegistrationApiUrlEnv}</code> 和{' '}
+              <code>{siteConfig.api.customerRegistrationApiKeyEnv}</code> 接入自己的客户服务。
+            </p>
+            <p>
+              供应商密钥和客户系统密钥应只放在服务端环境变量中。公开的客户端变量只用于非敏感配置。
+            </p>
+          </section>
 
-        <div style={{ textAlign: 'center' }}>
-          <a href="https://wa.me/8615607671586" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#1a4d2e', color: 'white', padding: '1rem 2rem', borderRadius: '0.5rem', textDecoration: 'none' }}>💬 Contact via WhatsApp</a>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <a href="/" style={{ color: '#1a4d2e' }}>← Back to Home</a>
+          <section className="panel warning">
+            <h2>上线前说明</h2>
+            <p>
+              当前默认返回的是本地示例方案。正式上线前，请替换或扩展为你的生成 API、
+              数据持久化、身份认证、计费和人工审核流程。
+            </p>
+          </section>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
