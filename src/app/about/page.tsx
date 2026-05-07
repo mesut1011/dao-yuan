@@ -1,47 +1,52 @@
+import { siteConfig } from '@/config/site'
+
 export default function AboutPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f0e6', padding: '2rem 1rem' }}>
-      <div style={{ maxWidth: '48rem', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ fontSize: '4rem' }}>☯</div>
-          <h1 style={{ fontSize: '2rem', color: '#1a4d2e', margin: 0 }}>About Dao Yuan</h1>
-        </div>
-
-        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Mission</h2>
-          <p style={{ color: '#666', lineHeight: 1.7 }}>
-            Dao Yuan is dedicated to preserving and sharing Taoist wisdom with the global community. 
-            We provide authentic prayer services and Bazi destiny analysis for overseas Chinese and Eastern culture enthusiasts.
+    <main className="section">
+      <div className="container narrow">
+        <div className="section-heading">
+          <p className="eyebrow">About this starter</p>
+          <h1>{siteConfig.name}</h1>
+          <p>
+            This project is now a neutral foundation for your own AI director
+            application. Provider-specific, third-party, and previous product
+            content has been removed from the user experience.
           </p>
         </div>
 
-        <div style={{ background: 'white', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ color: '#1a4d2e', marginTop: 0 }}>Our Services</h2>
-          <div style={{ marginBottom: '1rem' }}>
-            <strong>🕯️ Taoist Prayer Rituals</strong>
-            <p style={{ color: '#666', margin: '0.5rem 0' }}>Authentic ceremonies by ordained priests with photo/video confirmation.</p>
-          </div>
-          <div>
-            <strong>☯️ Bazi Destiny Analysis</strong>
-            <p style={{ color: '#666', margin: '0.5rem 0' }}>AI-powered interpretation based on traditional Chinese metaphysics.</p>
-          </div>
-        </div>
+        <div className="content-stack">
+          <section className="panel">
+            <h2>What changed</h2>
+            <ul className="check-list">
+              <li>Removed previous brand, service, and contact copy from the UI.</li>
+              <li>Replaced hard-coded contact links with a server-side API route.</li>
+              <li>Added a starter director workflow that works without external providers.</li>
+            </ul>
+          </section>
 
-        <div style={{ background: '#fef3c7', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem', border: '2px solid #c9a227' }}>
-          <h2 style={{ color: '#92400e', marginTop: 0 }}>⚠️ Disclaimer</h2>
-          <p style={{ color: '#92400e', fontSize: '0.9rem', lineHeight: 1.6 }}>
-            Our services are for spiritual guidance purposes only. Results may vary. We encourage rational thinking and personal responsibility.
-          </p>
-        </div>
+          <section className="panel">
+            <h2>API integration point</h2>
+            <p>
+              The frontend posts creative briefs to <code>{siteConfig.api.directorEndpoint}</code>.
+              That route can call your own provider by setting <code>{siteConfig.api.externalApiUrlEnv}</code>
+              and, if needed, <code>{siteConfig.api.externalApiKeyEnv}</code>.
+            </p>
+            <p>
+              Keep provider credentials in server-only environment variables. Public
+              client variables should only be used for non-secret settings.
+            </p>
+          </section>
 
-        <div style={{ textAlign: 'center' }}>
-          <a href="https://wa.me/8615607671586" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: '#1a4d2e', color: 'white', padding: '1rem 2rem', borderRadius: '0.5rem', textDecoration: 'none' }}>💬 Contact via WhatsApp</a>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <a href="/" style={{ color: '#1a4d2e' }}>← Back to Home</a>
+          <section className="panel warning">
+            <h2>Production note</h2>
+            <p>
+              The current response is a deterministic starter plan. Replace or enrich it
+              with your own API, persistence, authentication, billing, and review workflow
+              before launching a customer-facing product.
+            </p>
+          </section>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
