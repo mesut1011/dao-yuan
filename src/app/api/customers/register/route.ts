@@ -40,7 +40,7 @@ async function callExternalRegistrationApi(input: CustomerRegistrationInput): Pr
   }
 
   if (!response.ok) {
-    throw new Error(`External customer registration API returned ${response.status}.`)
+    throw new Error(`外部客户注册 API 返回 ${response.status}。`)
   }
 
   const payload = await response.json().catch(() => null)
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json()
     } catch {
-      return NextResponse.json({ errors: ['Request body must be valid JSON.'] }, { status: 400 })
+      return NextResponse.json({ errors: ['请求体必须是有效的 JSON。'] }, { status: 400 })
     }
 
     const input = normalizeCustomerRegistration(body as Partial<CustomerRegistrationInput>)
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ errors: [error.message] }, { status: 409 })
     }
 
-    const message = error instanceof Error ? error.message : 'Unable to register customer.'
+    const message = error instanceof Error ? error.message : '暂时无法注册客户。'
 
     return NextResponse.json({ errors: [message] }, { status: 500 })
   }

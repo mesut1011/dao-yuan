@@ -40,7 +40,7 @@ declare global {
 
 export class DuplicateCustomerError extends Error {
   constructor(email: string) {
-    super(`A customer already exists for ${email}.`)
+    super(`邮箱 ${email} 已注册。`)
     this.name = 'DuplicateCustomerError'
   }
 }
@@ -59,19 +59,19 @@ export function normalizeCustomerRegistration(input: Partial<CustomerRegistratio
 export function validateCustomerRegistration(input: CustomerRegistrationInput): string[] {
   const errors: string[] = []
 
-  if (input.name.length < 2) errors.push('Name must be at least 2 characters.')
-  if (input.name.length > 80) errors.push('Name must be 80 characters or less.')
-  if (!EMAIL_PATTERN.test(input.email)) errors.push('A valid email address is required.')
-  if (input.email.length > 254) errors.push('Email must be 254 characters or less.')
-  if (input.password.length < 8) errors.push('Password must be at least 8 characters.')
-  if (input.password.length > 128) errors.push('Password must be 128 characters or less.')
+  if (input.name.length < 2) errors.push('姓名至少需要 2 个字符。')
+  if (input.name.length > 80) errors.push('姓名不能超过 80 个字符。')
+  if (!EMAIL_PATTERN.test(input.email)) errors.push('请输入有效的邮箱地址。')
+  if (input.email.length > 254) errors.push('邮箱不能超过 254 个字符。')
+  if (input.password.length < 8) errors.push('密码至少需要 8 个字符。')
+  if (input.password.length > 128) errors.push('密码不能超过 128 个字符。')
   if (!/[A-Za-z]/.test(input.password) || !/[0-9]/.test(input.password)) {
-    errors.push('Password must include at least one letter and one number.')
+    errors.push('密码必须同时包含至少一个字母和一个数字。')
   }
   if (input.company && input.company.length > 120) {
-    errors.push('Company must be 120 characters or less.')
+    errors.push('公司名称不能超过 120 个字符。')
   }
-  if ((input.source || '').length > 80) errors.push('Source must be 80 characters or less.')
+  if ((input.source || '').length > 80) errors.push('来源标识不能超过 80 个字符。')
 
   return errors
 }

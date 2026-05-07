@@ -32,7 +32,7 @@ async function callExternalDirectorApi(input: DirectorBriefInput): Promise<Direc
   })
 
   if (!response.ok) {
-    throw new Error(`External director API returned ${response.status}.`)
+    throw new Error(`外部导演 API 返回 ${response.status}。`)
   }
 
   const payload = (await response.json()) as ExternalDirectorResponse | DirectorPlan | null
@@ -46,7 +46,15 @@ async function callExternalDirectorApi(input: DirectorBriefInput): Promise<Direc
 
 export async function POST(request: NextRequest) {
   try {
-    const input = normalizeDirectorBrief(await request.json())
+    let body: unknown
+
+    try {
+      body = await request.json()
+    } catch {
+      return NextResponse.json({ errors: ['请求体必须是有效的 JSON。'] }, { status: 400 })
+    }
+
+    const input = normalizeDirectorBrief(body as Partial<DirectorBriefInput>)
     const errors = validateDirectorBrief(input)
 
     if (errors.length > 0) {
@@ -61,7 +69,7 @@ export async function POST(request: NextRequest) {
       plan,
     })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unable to create director plan.'
+    const message = error instanceof Error ? error.message : '暂时无法生成导演方案。'
 
     return NextResponse.json({ errors: [message] }, { status: 500 })
   }

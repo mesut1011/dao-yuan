@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: 'AI Director Studio',
-  shortName: 'AI Director',
-  description: 'A self-owned AI director starter for turning creative briefs into production-ready direction plans.',
+  name: 'AI 导演工作室',
+  shortName: 'AI 导演',
+  description: '一个可接入自有 API 的 AI 导演产品起步模板，用于把创意简报转化为可执行的制作方案。',
   navItems: [
-    { href: '/', label: 'Home' },
-    { href: '/studio', label: 'Studio' },
-    { href: '/about', label: 'About' },
+    { href: '/', label: '首页' },
+    { href: '/studio', label: '工作台' },
+    { href: '/about', label: '关于' },
   ],
   api: {
     directorEndpoint: '/api/director',

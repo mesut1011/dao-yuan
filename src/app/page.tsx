@@ -7,30 +7,29 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <p className="eyebrow">Self-owned AI workflow starter</p>
-            <h1>Build your own AI director product.</h1>
+            <p className="eyebrow">自有 AI 工作流起步模板</p>
+            <h1>打造属于你的 AI 导演产品。</h1>
             <p className="hero-copy">
-              {siteConfig.name} gives you a clean frontend, a server-side API boundary,
-              and a neutral creative workflow that you can connect to your own model,
-              automation, or production backend.
+              {siteConfig.name} 提供干净的前端界面、服务端 API 边界和中性的创意工作流。
+              你可以在此基础上接入自己的模型、自动化服务或生产后端。
             </p>
             <div className="button-row">
               <Link href="/studio" className="button primary">
-                Open Studio
+                打开工作台
               </Link>
               <Link href="/about" className="button secondary">
-                View integration notes
+                查看接入说明
               </Link>
             </div>
           </div>
           <div className="hero-card">
-            <p className="card-label">Output preview</p>
-            <h2>Director Plan</h2>
+            <p className="card-label">输出预览</p>
+            <h2>导演方案</h2>
             <ul>
-              <li>Creative direction</li>
-              <li>Scene-by-scene shot list</li>
-              <li>Production notes</li>
-              <li>Next API integration steps</li>
+              <li>创意方向</li>
+              <li>分镜头清单</li>
+              <li>制作注意事项</li>
+              <li>后续 API 接入步骤</li>
             </ul>
           </div>
         </div>
@@ -39,29 +38,27 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">What is included</p>
-            <h2>A product shell ready for your API.</h2>
+            <p className="eyebrow">已包含内容</p>
+            <h2>一个随时可接入你自有 API 的产品外壳。</h2>
           </div>
           <div className="feature-grid">
             <article className="feature-card">
-              <h3>Frontend studio</h3>
+              <h3>前端工作台</h3>
               <p>
-                A client-side brief form that submits to your Next.js API route and renders
-                a structured director plan.
+                客户端创意简报表单会提交到 Next.js API 路由，并渲染结构化的导演方案。
               </p>
             </article>
             <article className="feature-card">
-              <h3>Backend boundary</h3>
+              <h3>后端接入边界</h3>
               <p>
-                The <code>/api/director</code> route keeps API keys and provider logic on the
-                server, with a local starter response until your API is connected.
+                <code>/api/director</code> 路由把 API 密钥和供应商逻辑保留在服务端。
+                在接入你的 API 之前，会先返回本地示例结果。
               </p>
             </article>
             <article className="feature-card">
-              <h3>Neutral branding</h3>
+              <h3>中性品牌基础</h3>
               <p>
-                Previous product-specific content has been removed so the app can become
-                your own brand and workflow.
+                旧项目的特定品牌和业务内容已移除，方便你替换成自己的品牌和流程。
               </p>
             </article>
           </div>
@@ -71,16 +68,16 @@ export default function Home() {
       <section className="section muted">
         <div className="container split-card">
           <div>
-            <p className="eyebrow">Next step</p>
-            <h2>Connect your own generation API.</h2>
+            <p className="eyebrow">下一步</p>
+            <h2>接入你自己的生成 API。</h2>
             <p>
-              Set <code>{siteConfig.api.externalApiUrlEnv}</code> and optionally{' '}
-              <code>{siteConfig.api.externalApiKeyEnv}</code>, then map your API response to
-              the shared DirectorPlan shape.
+              设置 <code>{siteConfig.api.externalApiUrlEnv}</code>，并按需设置{' '}
+              <code>{siteConfig.api.externalApiKeyEnv}</code>，然后把你的 API 响应映射到统一的
+              DirectorPlan 数据结构。
             </p>
           </div>
           <Link href="/studio" className="button primary">
-            Try the workflow
+            体验工作流
           </Link>
         </div>
       </section>
@@ -88,7 +85,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container">
           <p>{siteConfig.name}</p>
-          <span>Built for your own API and brand.</span>
+          <span>为你的自有 API 和自有品牌而构建。</span>
         </div>
       </footer>
     </main>
