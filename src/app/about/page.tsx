@@ -32,6 +32,11 @@ export default function AboutPage() {
               and, if needed, <code>{siteConfig.api.externalApiKeyEnv}</code>.
             </p>
             <p>
+              Customer registration is available at <code>{siteConfig.api.customerRegistrationEndpoint}</code>.
+              Connect your own customer service with <code>{siteConfig.api.customerRegistrationApiUrlEnv}</code>
+              and <code>{siteConfig.api.customerRegistrationApiKeyEnv}</code>.
+            </p>
+            <p>
               Keep provider credentials in server-only environment variables. Public
               client variables should only be used for non-secret settings.
             </p>
